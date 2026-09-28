@@ -2735,44 +2735,110 @@ Click on &quot;Show details&quot; to view used filter.</source>
 <context>
     <name>TranslatorSettings</name>
     <message>
-        <location filename="src/ui/settings/translator_settings.py" line="54"/>
+        <location filename="src/ui/settings/translator_settings.py" line="69"/>
         <source>Translator API</source>
         <translation>翻译器 API</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/translator_settings.py" line="56"/>
+        <location filename="src/ui/settings/translator_settings.py" line="71"/>
         <source>Translator API key</source>
         <translation>翻译器 API 密钥</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/translator_settings.py" line="66"/>
-        <source>Gemini system prompt</source>
-        <translation>Gemini 系统提示词</translation>
-    </message>
-    <message>
-        <location filename="src/ui/settings/translator_settings.py" line="71"/>
+        <location filename="src/ui/settings/translator_settings.py" line="82"/>
         <source>The selected target language is appended automatically.</source>
         <translation>所选目标语言会自动附加。</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/translator_settings.py" line="102"/>
+        <location filename="src/ui/settings/translator_settings.py" line="126"/>
+        <source>LLM API URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="134"/>
+        <source>LLM model</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="144"/>
+        <source>Refresh models</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="153"/>
+        <source>Reasoning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="156"/>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="157"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="158"/>
+        <source>Minimal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="159"/>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="160"/>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="161"/>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="183"/>
+        <location filename="src/ui/settings/translator_settings.py" line="194"/>
+        <source>LLM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="195"/>
+        <source>No models are currently available from the LLM API.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="226"/>
+        <source>An API key is required for LLM translator!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="230"/>
+        <source>Select an LLM model!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="234"/>
+        <source>A system prompt is required for LLM translator!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="78"/>
+        <source>System prompt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="200"/>
         <source>Ask for confirmation before starting a batch machine translation</source>
         <translation>开始批量机器翻译之前要求确认</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/translator_settings.py" line="120"/>
+        <location filename="src/ui/settings/translator_settings.py" line="217"/>
         <source>An API key is required for DeepL translator!</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/ui/settings/translator_settings.py" line="127"/>
-        <source>An API key is required for Gemini translator!</source>
-        <translation>Gemini 翻译器需要 API 密钥！</translation>
-    </message>
-    <message>
-        <location filename="src/ui/settings/translator_settings.py" line="134"/>
-        <source>A system prompt is required for Gemini translator!</source>
-        <translation>Gemini 翻译器需要系统提示词！</translation>
     </message>
 </context>
 <context>
@@ -3193,39 +3259,49 @@ Resolve these rules in Vortex and try again.</source>
         <translation>当选择全局实例作为目标时，无法安装 MO2！</translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="19"/>
-        <source>Gemini translation failed!</source>
-        <translation>Gemini 翻译失败！</translation>
+        <location filename="src/core/translator/exceptions.py" line="17"/>
+        <source>LLM translation failed!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="src/core/translator/exceptions.py" line="29"/>
-        <source>Gemini API key is required!</source>
-        <translation>需要 Gemini API 密钥！</translation>
+        <source>An API key is required for LLM!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="39"/>
-        <source>Gemini system prompt is required!</source>
-        <translation>需要 Gemini 系统提示词！</translation>
+        <location filename="src/core/translator/exceptions.py" line="37"/>
+        <source>A valid LLM API URL is required!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="49"/>
-        <source>Gemini API request failed: {0}</source>
-        <translation>Gemini API 请求失败：{0}</translation>
+        <location filename="src/core/translator/exceptions.py" line="45"/>
+        <source>Select an LLM model!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="59"/>
-        <source>Could not reach the Gemini API.</source>
-        <translation>无法连接到 Gemini API。</translation>
+        <location filename="src/core/translator/exceptions.py" line="53"/>
+        <source>A system prompt is required for LLM!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/core/translator/exceptions.py" line="61"/>
+        <source>Could not reach the LLM API.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="src/core/translator/exceptions.py" line="69"/>
-        <source>Gemini API returned an unexpected response.</source>
-        <translation>Gemini API 返回了意外响应。</translation>
+        <source>LLM API request failed: {0}</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="81"/>
-        <source>Gemini API returned an empty translation.</source>
-        <translation>Gemini API 返回了空翻译。</translation>
+        <location filename="src/core/translator/exceptions.py" line="77"/>
+        <source>LLM API returned an unexpected response.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/core/translator/exceptions.py" line="87"/>
+        <source>LLM API returned an empty translation.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

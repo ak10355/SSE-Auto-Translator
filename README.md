@@ -82,3 +82,66 @@ If you're interested in maintaining a masterlist for your language, contact us (
   - [Wet and Cold SE](https://www.nexusmods.com/skyrimspecialedition/mods/644) by [StepModifications](https://next.nexusmods.com/profile/StepModifications)
   - [Wet and Cold SE - German](https://www.nexusmods.com/skyrimspecialedition/mods/89391) by [kroenel](https://next.nexusmods.com/profile/kroenel)
   - `_ResourcePack.esl & _ResourcePack.bsa` by Bethesda from the Vanilla base game, stripped down to the bare minimum
+
+## OpenAI-Compatible LLM Translation
+
+SSE-AT provides one generic `LLM` translator integration for OpenAI-compatible
+chat-completions APIs. It can be used with local or hosted servers without
+provider-specific translator implementations. This includes Unsloth, Ollama,
+LM Studio, Gemini through its OpenAI-compatible endpoint, and other servers
+that implement `GET /models` and `POST /chat/completions`.
+
+### Settings
+
+Select `LLM` as the translator API in Settings and configure the following
+fields:
+
+- **LLM API URL**: The OpenAI-compatible base URL, including its version path.
+  Examples: `http://127.0.0.1:8888/v1` for Unsloth,
+  `http://127.0.0.1:11434/v1` for Ollama,
+  `http://127.0.0.1:1234/v1` for LM Studio, and
+  `https://generativelanguage.googleapis.com/v1beta/openai` for Gemini.
+- **Translator API key**: Sent as a Bearer token. It is required by the
+  application; local servers that do not validate authentication can use a
+  non-secret placeholder value.
+- **LLM model**: Use **Refresh models** to request the server's `/models`
+  endpoint, then choose one of the returned model IDs.
+- **System prompt**: One shared, editable instruction for LLM translation. The
+  default prompt preserves Skyrim terminology, formatting, placeholders,
+  markup, control sequences, and the selected Russian addressing style.
+- **Reasoning**: `Off` is the default and sends `reasoning_effort: "none"`.
+  `Auto` omits the field; Minimal, Low, Medium, and High send the corresponding
+  value for servers that support it.
+
+The integration sends non-streaming requests to `/chat/completions` with a low
+temperature. It returns only the translated text and reports invalid URLs,
+missing credentials/model/prompt, network errors, and API error messages in
+the application UI. Translation-cache keys include the URL, model, prompt,
+reasoning setting, input text, target language, and glossary version, so a
+change to output-affecting settings does not reuse an incompatible cached
+translation.
+
+### Official Vanilla Glossary
+
+When `LLM` is used, SSE-AT lazily builds an in-memory glossary from the bundled
+vanilla translation database for the selected target language. It includes
+named plugin fields (`* FULL`) such as NPCs, locations, quests, items,
+factions, books, spells, shouts, perks, races, and equipment, plus quest
+objectives (`QUST NNAM`). No separate glossary file is created.
+
+Before a request, SSE-AT finds exact English terms in the text being translated
+and appends up to 20 relevant pairs to the system prompt. For example:
+
+```text
+- Windhelm -> Виндхельм
+- Ulfric Stormcloak -> Ульфрик Буревестник
+- Stones of Barenziah -> Камень Барензии
+```
+
+The LLM is instructed to treat these values as authoritative Skyrim
+terminology while adapting grammatical case and singular/plural number to the
+target sentence. Regular English plural variants for names in the form
+`<word> of <name>` are generated automatically, allowing `Stones of Barenziah`
+to be matched from the vanilla `Stone of Barenziah` entry. The glossary is
+built only once per application session when LLM translation is first used;
+matching is local and adds no network or GPU workload.

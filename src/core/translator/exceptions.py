@@ -9,75 +9,79 @@ from PySide6.QtWidgets import QApplication
 from core.utilities.exceptions import LocalizedException
 
 
-class GeminiError(LocalizedException):
-    """Base class for Gemini translator errors."""
+class LlmError(LocalizedException):
+    """Base class for OpenAI-compatible LLM translator errors."""
 
     @override
     def getLocalizedMessage(self) -> str:
-        """Returns the localized generic Gemini failure message."""
-
-        return QApplication.translate("exceptions", "Gemini translation failed!")
+        return QApplication.translate("exceptions", "LLM translation failed!")
 
 
-class GeminiApiKeyMissingError(GeminiError):
-    """Exception raised when no Gemini API key is configured."""
-
-    @override
-    def getLocalizedMessage(self) -> str:
-        """Returns the localized missing API key message."""
-
-        return QApplication.translate("exceptions", "Gemini API key is required!")
+class LlmConfigurationError(LlmError):
+    """Exception raised when required LLM settings are missing or invalid."""
 
 
-class GeminiPromptMissingError(GeminiError):
-    """Exception raised when no Gemini system prompt is configured."""
+class LlmApiKeyMissingError(LlmConfigurationError):
+    """Exception raised when no API key is configured."""
 
     @override
     def getLocalizedMessage(self) -> str:
-        """Returns the localized missing system prompt message."""
-
-        return QApplication.translate("exceptions", "Gemini system prompt is required!")
+        return QApplication.translate("exceptions", "An API key is required for LLM!")
 
 
-class GeminiRequestError(GeminiError):
-    """Exception raised when the Gemini API rejects a request."""
+class LlmBaseUrlInvalidError(LlmConfigurationError):
+    """Exception raised when the LLM API base URL is invalid."""
 
     @override
     def getLocalizedMessage(self) -> str:
-        """Returns the localized rejected request message."""
-
-        return QApplication.translate("exceptions", "Gemini API request failed: {0}")
+        return QApplication.translate("exceptions", "A valid LLM API URL is required!")
 
 
-class GeminiNetworkError(GeminiError):
-    """Exception raised when the Gemini API cannot be reached."""
+class LlmModelMissingError(LlmConfigurationError):
+    """Exception raised when no LLM model is selected."""
 
     @override
     def getLocalizedMessage(self) -> str:
-        """Returns the localized network failure message."""
-
-        return QApplication.translate("exceptions", "Could not reach the Gemini API.")
+        return QApplication.translate("exceptions", "Select an LLM model!")
 
 
-class GeminiUnexpectedResponseError(GeminiError):
-    """Exception raised when the Gemini response cannot be parsed."""
+class LlmPromptMissingError(LlmConfigurationError):
+    """Exception raised when no system prompt is configured."""
 
     @override
     def getLocalizedMessage(self) -> str:
-        """Returns the localized malformed response message."""
+        return QApplication.translate("exceptions", "A system prompt is required for LLM!")
 
+
+class LlmNetworkError(LlmError):
+    """Exception raised when the LLM API cannot be reached."""
+
+    @override
+    def getLocalizedMessage(self) -> str:
+        return QApplication.translate("exceptions", "Could not reach the LLM API.")
+
+
+class LlmRequestError(LlmError):
+    """Exception raised when the LLM API rejects a request."""
+
+    @override
+    def getLocalizedMessage(self) -> str:
+        return QApplication.translate("exceptions", "LLM API request failed: {0}")
+
+
+class LlmUnexpectedResponseError(LlmError):
+    """Exception raised when an LLM response cannot be parsed."""
+
+    @override
+    def getLocalizedMessage(self) -> str:
         return QApplication.translate(
-            "exceptions", "Gemini API returned an unexpected response."
+            "exceptions", "LLM API returned an unexpected response."
         )
 
 
-class GeminiEmptyTranslationError(GeminiError):
-    """Exception raised when Gemini returns an empty translation."""
+class LlmEmptyTranslationError(LlmError):
+    """Exception raised when an LLM returns an empty translation."""
 
     @override
     def getLocalizedMessage(self) -> str:
-        """Returns the localized empty translation message."""
-
-        return QApplication.translate(
-            "exceptions", "Gemini API returned an empty translation."
-        )
+        return QApplication.translate("exceptions", "LLM API returned an empty translation.")

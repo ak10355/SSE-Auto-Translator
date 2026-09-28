@@ -9,7 +9,7 @@ from cutleast_core_lib.core.config.exceptions import ConfigValidationError
 from cutleast_core_lib.test.utils import Utils
 from cutleast_core_lib.ui.widgets.enum_selector import EnumSelector
 from cutleast_core_lib.ui.widgets.key_edit import KeyLineEdit
-from PySide6.QtWidgets import QCheckBox, QPlainTextEdit
+from PySide6.QtWidgets import QCheckBox, QComboBox, QPlainTextEdit
 from pytestqt.qtbot import QtBot
 
 from core.config.translator_config import TranslatorConfig
@@ -29,9 +29,14 @@ class TestTranslatorSettings(BaseTest):
         EnumSelector[TranslatorApi],
     )
     API_KEY_ENTRY: tuple[str, type[KeyLineEdit]] = "api_key_entry", KeyLineEdit
-    GEMINI_PROMPT_ENTRY: tuple[str, type[QPlainTextEdit]] = (
-        "gemini_prompt_entry",
+    PROMPT_ENTRY: tuple[str, type[QPlainTextEdit]] = (
+        "prompt_entry",
         QPlainTextEdit,
+    )
+    LLM_MODEL_ENTRY: tuple[str, type[QComboBox]] = "llm_model_entry", QComboBox
+    REASONING_EFFORT_ENTRY: tuple[str, type[QComboBox]] = (
+        "reasoning_effort_entry",
+        QComboBox,
     )
 
     SHOW_CONFIRMATIONS_BOX: tuple[str, type[QCheckBox]] = (
@@ -65,8 +70,11 @@ class TestTranslatorSettings(BaseTest):
         api_key_entry: KeyLineEdit = Utils.get_private_field(
             translator_settings, *TestTranslatorSettings.API_KEY_ENTRY
         )
-        gemini_prompt_entry: QPlainTextEdit = Utils.get_private_field(
-            translator_settings, *TestTranslatorSettings.GEMINI_PROMPT_ENTRY
+        prompt_entry: QPlainTextEdit = Utils.get_private_field(
+            translator_settings, *TestTranslatorSettings.PROMPT_ENTRY
+        )
+        reasoning_effort_entry: QComboBox = Utils.get_private_field(
+            translator_settings, *TestTranslatorSettings.REASONING_EFFORT_ENTRY
         )
 
         show_confirmations_box: QCheckBox = Utils.get_private_field(
@@ -76,13 +84,15 @@ class TestTranslatorSettings(BaseTest):
         # then
         assert api_selector.getCurrentValue() == translator_config.translator
         assert api_key_entry.isEnabled() == (
-            translator_config.translator in (TranslatorApi.DeepL, TranslatorApi.Gemini)
+            translator_config.translator
+            in (TranslatorApi.DeepL, TranslatorApi.LLM)
         )
         assert (api_key_entry.text().strip() or None) == translator_config.api_key
-        assert gemini_prompt_entry.isEnabled() == (
-            translator_config.translator == TranslatorApi.Gemini
+        assert prompt_entry.isEnabled() == (
+            translator_config.translator == TranslatorApi.LLM
         )
-        assert gemini_prompt_entry.toPlainText() == translator_config.gemini_prompt
+        assert prompt_entry.toPlainText() == translator_config.prompt
+        assert reasoning_effort_entry.currentData() == translator_config.reasoning_effort
 
         assert (
             show_confirmations_box.isChecked()
@@ -127,10 +137,10 @@ class TestTranslatorSettings(BaseTest):
         with pytest.raises(ConfigValidationError, match="API key is required for DeepL"):
             translator_settings.validate()
 
-    def test_validate_raises_for_missing_gemini_api_key(
+    def test_validate_raises_for_missing_llm_api_key(
         self, translator_settings: TranslatorSettings
     ) -> None:
-        """Tests that `validate` requires an API key for Gemini."""
+        """Tests that `validate` requires an API key for LLM."""
 
         # given
         api_selector: EnumSelector[TranslatorApi] = Utils.get_private_field(
@@ -139,19 +149,19 @@ class TestTranslatorSettings(BaseTest):
         api_key_entry: KeyLineEdit = Utils.get_private_field(
             translator_settings, *TestTranslatorSettings.API_KEY_ENTRY
         )
-        api_selector.setCurrentValue(TranslatorApi.Gemini)
+        api_selector.setCurrentValue(TranslatorApi.LLM)
         api_key_entry.setText("   ")
 
         # when / then
         with pytest.raises(
-            ConfigValidationError, match="API key is required for Gemini"
+            ConfigValidationError, match="API key is required for LLM"
         ):
             translator_settings.validate()
 
-    def test_validate_raises_for_missing_gemini_prompt(
+    def test_validate_raises_for_missing_llm_prompt(
         self, translator_settings: TranslatorSettings
     ) -> None:
-        """Tests that `validate` requires a system prompt for Gemini."""
+        """Tests that `validate` requires a system prompt for LLM."""
 
         # given
         api_selector: EnumSelector[TranslatorApi] = Utils.get_private_field(
@@ -160,12 +170,16 @@ class TestTranslatorSettings(BaseTest):
         api_key_entry: KeyLineEdit = Utils.get_private_field(
             translator_settings, *TestTranslatorSettings.API_KEY_ENTRY
         )
-        gemini_prompt_entry: QPlainTextEdit = Utils.get_private_field(
-            translator_settings, *TestTranslatorSettings.GEMINI_PROMPT_ENTRY
+        prompt_entry: QPlainTextEdit = Utils.get_private_field(
+            translator_settings, *TestTranslatorSettings.PROMPT_ENTRY
         )
-        api_selector.setCurrentValue(TranslatorApi.Gemini)
+        llm_model_entry: QComboBox = Utils.get_private_field(
+            translator_settings, *TestTranslatorSettings.LLM_MODEL_ENTRY
+        )
+        api_selector.setCurrentValue(TranslatorApi.LLM)
         api_key_entry.setText("test-api-key")
-        gemini_prompt_entry.setPlainText("   ")
+        llm_model_entry.addItem("test-model")
+        prompt_entry.setPlainText("   ")
 
         # when / then
         with pytest.raises(ConfigValidationError, match="system prompt is required"):

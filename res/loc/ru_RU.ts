@@ -2733,44 +2733,110 @@ Click on &quot;Show details&quot; to view used filter.</source>
 <context>
     <name>TranslatorSettings</name>
     <message>
-        <location filename="src/ui/settings/translator_settings.py" line="54"/>
+        <location filename="src/ui/settings/translator_settings.py" line="69"/>
         <source>Translator API</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/ui/settings/translator_settings.py" line="56"/>
-        <source>Translator API key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/ui/settings/translator_settings.py" line="66"/>
-        <source>Gemini system prompt</source>
-        <translation>Системный промпт Gemini</translation>
+        <translation>API переводчика</translation>
     </message>
     <message>
         <location filename="src/ui/settings/translator_settings.py" line="71"/>
+        <source>Translator API key</source>
+        <translation>API-ключ переводчика</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="82"/>
         <source>The selected target language is appended automatically.</source>
         <translation>Выбранный язык перевода добавляется автоматически.</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/translator_settings.py" line="102"/>
-        <source>Ask for confirmation before starting a batch machine translation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/ui/settings/translator_settings.py" line="120"/>
-        <source>An API key is required for DeepL translator!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/ui/settings/translator_settings.py" line="127"/>
-        <source>An API key is required for Gemini translator!</source>
-        <translation>Для переводчика Gemini требуется API-ключ!</translation>
+        <location filename="src/ui/settings/translator_settings.py" line="126"/>
+        <source>LLM API URL</source>
+        <translation>URL API LLM</translation>
     </message>
     <message>
         <location filename="src/ui/settings/translator_settings.py" line="134"/>
-        <source>A system prompt is required for Gemini translator!</source>
-        <translation>Для переводчика Gemini требуется системный промпт!</translation>
+        <source>LLM model</source>
+        <translation>Модель LLM</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="144"/>
+        <source>Refresh models</source>
+        <translation>Обновить список моделей</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="153"/>
+        <source>Reasoning</source>
+        <translation>Рассуждение</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="156"/>
+        <source>Off</source>
+        <translation>Выключено</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="157"/>
+        <source>Auto</source>
+        <translation>Автоматически</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="158"/>
+        <source>Minimal</source>
+        <translation>Минимальное</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="159"/>
+        <source>Low</source>
+        <translation>Низкое</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="160"/>
+        <source>Medium</source>
+        <translation>Среднее</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="161"/>
+        <source>High</source>
+        <translation>Высокое</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="183"/>
+        <location filename="src/ui/settings/translator_settings.py" line="194"/>
+        <source>LLM</source>
+        <translation>LLM</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="195"/>
+        <source>No models are currently available from the LLM API.</source>
+        <translation>API LLM сейчас не предоставляет моделей.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="226"/>
+        <source>An API key is required for LLM translator!</source>
+        <translation>Для переводчика LLM требуется API-ключ!</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="230"/>
+        <source>Select an LLM model!</source>
+        <translation>Выберите модель LLM!</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="234"/>
+        <source>A system prompt is required for LLM translator!</source>
+        <translation>Для переводчика LLM требуется системный промпт!</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="78"/>
+        <source>System prompt</source>
+        <translation>Системный промпт</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="200"/>
+        <source>Ask for confirmation before starting a batch machine translation</source>
+        <translation>Запрашивать подтверждение перед пакетным машинным переводом</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/translator_settings.py" line="217"/>
+        <source>An API key is required for DeepL translator!</source>
+        <translation>Для переводчика DeepL требуется API-ключ!</translation>
     </message>
 </context>
 <context>
@@ -3183,39 +3249,49 @@ Resolve these rules in Vortex and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="19"/>
-        <source>Gemini translation failed!</source>
-        <translation>Не удалось выполнить перевод с помощью Gemini!</translation>
+        <location filename="src/core/translator/exceptions.py" line="17"/>
+        <source>LLM translation failed!</source>
+        <translation>Ошибка перевода через LLM!</translation>
     </message>
     <message>
         <location filename="src/core/translator/exceptions.py" line="29"/>
-        <source>Gemini API key is required!</source>
-        <translation>Требуется API-ключ Gemini!</translation>
+        <source>An API key is required for LLM!</source>
+        <translation>Для LLM требуется API-ключ!</translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="39"/>
-        <source>Gemini system prompt is required!</source>
-        <translation>Требуется системный промпт Gemini!</translation>
+        <location filename="src/core/translator/exceptions.py" line="37"/>
+        <source>A valid LLM API URL is required!</source>
+        <translation>Требуется корректный URL API LLM!</translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="49"/>
-        <source>Gemini API request failed: {0}</source>
-        <translation>Запрос к API Gemini завершился ошибкой: {0}</translation>
+        <location filename="src/core/translator/exceptions.py" line="45"/>
+        <source>Select an LLM model!</source>
+        <translation>Выберите модель LLM!</translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="59"/>
-        <source>Could not reach the Gemini API.</source>
-        <translation>Не удалось подключиться к API Gemini.</translation>
+        <location filename="src/core/translator/exceptions.py" line="53"/>
+        <source>A system prompt is required for LLM!</source>
+        <translation>Для LLM требуется системный промпт!</translation>
+    </message>
+    <message>
+        <location filename="src/core/translator/exceptions.py" line="61"/>
+        <source>Could not reach the LLM API.</source>
+        <translation>Не удалось подключиться к API LLM.</translation>
     </message>
     <message>
         <location filename="src/core/translator/exceptions.py" line="69"/>
-        <source>Gemini API returned an unexpected response.</source>
-        <translation>API Gemini вернул неожиданный ответ.</translation>
+        <source>LLM API request failed: {0}</source>
+        <translation>Ошибка запроса к API LLM: {0}</translation>
     </message>
     <message>
-        <location filename="src/core/translator/exceptions.py" line="81"/>
-        <source>Gemini API returned an empty translation.</source>
-        <translation>API Gemini вернул пустой перевод.</translation>
+        <location filename="src/core/translator/exceptions.py" line="77"/>
+        <source>LLM API returned an unexpected response.</source>
+        <translation>API LLM вернул неожиданный ответ.</translation>
+    </message>
+    <message>
+        <location filename="src/core/translator/exceptions.py" line="87"/>
+        <source>LLM API returned an empty translation.</source>
+        <translation>API LLM вернул пустой перевод.</translation>
     </message>
 </context>
 <context>
